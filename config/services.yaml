@@ -4,6 +4,17 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    api:
+        ny:
+            key: "TRp173thASM6OaCHyWahMegLwyyBGwQS"
+            url: "https://api.nytimes.com/svc/archive/v1/2019/1"
+        mediastack:
+            key: "0b0a4cd28b57879609a459f4811219a4"
+            url: "http://api.mediastack.com/v1/news"
+        newsapi:
+            key: "f7578605bf464d129c6f13a6b45351f5"
+            url: "https://newsapi.org/v2/everything?q=Apple&from=2022-02-10&sortBy=popularity"
+
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +30,10 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
+    App\Service\NewsAgregatorService:
+        $fetchers:
+            - "@App\\Service\\FetcherService\\NYTimesFetcherService"
+            - "@App\\Service\\FetcherService\\MediaStackFetcherService"
+            - "@App\\Service\\FetcherService\\NewsApiFetcherService"
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

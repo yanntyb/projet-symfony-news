@@ -1,0 +1,12 @@
+<div class="article">
+    <h1>{{ new["title"] }}</h1>
+    <div class="content">
+        <div class="text">
+            {{ new["content"] }}
+        </div>
+        {% if new["image"] is not null %}
+            <img src="{{ new["image"] }}" alt="">
+        {% endif %}
+    </div>
+</div>
+

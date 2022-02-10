@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <link rel="stylesheet" href="/{{ asset('build/app.css') }}">
+    <div class="list">
+        {% for news in fetched %}
+            {% for new in news %}
+                {% include "news/single.html.twig" with {"new": new} only %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}
